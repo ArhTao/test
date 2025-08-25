@@ -1,0 +1,36 @@
+1 samba配置
+sudo apt install samnba
+cd /etc/samba
+chmod 777 smb.conf
+vim smb.conf
+
+打开的配置文件的末尾加上如下内容：
+[Ubuntu_18.04]          //映射网络驱动时候用的域名
+    comment = Samba
+    path = /home/username
+    public = yes
+    writable = yes
+    available = yes
+    browseable = yes
+    valid users = username
+
+sudo smbpasswd -a username
+sudo systemctl restart smbd.service     //重启samba
+
+2 sudo apt install net-tools
+    安装网络工具
+    ifconfig查询 Ubuntu分配的ip地址
+
+3 window 映射网络驱动
+    文件夹名： \\Ubuntu的IP\映射网络驱动时候用的域名
+    eg：\\192.168.125.130\Ubuntu_18.04
+    
+4 linux 生成ssh
+    先安装ssh-server
+    sudo apt install openssh-server
+    ssh-keygen -t rsa       //生产密钥
+    cat ~/.ssh/id_rsa.pub   //查看密钥
+
+5 linux 编译 c文件
+
+    gcc hello.c -o hello
